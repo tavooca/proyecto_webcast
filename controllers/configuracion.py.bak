@@ -1,0 +1,24 @@
+# coding: utf8
+# intente algo como
+def index(): return dict(message="hello from configuracion.py")
+
+def grupos():
+    formulario=SQLFORM.grid(db.grupos)
+    return locals()
+    
+def estados():
+    formulario=SQLFORM.grid(db.estados)
+    return locals()
+    
+def tipos():
+    formulario=SQLFORM.grid(db.tipos)
+    return locals()
+
+
+def clientes():
+    formulario=SQLFORM.smartgrid(db.clientes)
+    return locals()
+    
+def proyectos():
+    formulario=SQLFORM.smartgrid(db.proyectos)
+    return locals()

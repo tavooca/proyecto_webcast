@@ -1,0 +1,114 @@
+timestamp: 2012-09-06T15:35:29.571790
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2012-09-06T15:35:29.702530
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-09-06T15:35:29.814506
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-09-06T15:35:29.968129
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2012-09-06T15:35:30.083525
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-09-06T15:35:30.206540
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2012-09-06T15:46:08.420839
+ALTER TABLE auth_user ADD username CHAR(128);
+timestamp: 2012-09-06T16:12:09.041788
+CREATE TABLE grupos(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    grupo CHAR(100) NOT NULL
+);
+success!
+timestamp: 2012-09-06T16:12:09.236101
+CREATE TABLE clientes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombres CHAR(512) NOT NULL,
+    apellidos CHAR(512) NOT NULL,
+    empresa CHAR(512),
+    telefono CHAR(512),
+    email CHAR(512),
+    observacion TEXT,
+    foto CHAR(512)
+);
+success!
+timestamp: 2012-09-06T16:12:09.392685
+CREATE TABLE estados(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    grupo INTEGER REFERENCES grupos (id) ON DELETE CASCADE,
+    estado CHAR(512) NOT NULL
+);
+success!
+timestamp: 2012-09-06T16:12:09.573173
+CREATE TABLE tipos(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    grupo INTEGER REFERENCES grupos (id) ON DELETE CASCADE,
+    tipo CHAR(512) NOT NULL
+);
+success!
+timestamp: 2012-09-06T16:12:09.730314
+CREATE TABLE proyecto(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre CHAR(512),
+    cliente INTEGER REFERENCES clientes (id) ON DELETE CASCADE,
+    tipo INTEGER REFERENCES tipos (id) ON DELETE CASCADE,
+    estado INTEGER REFERENCES estados (id) ON DELETE CASCADE,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL,
+    valor INTEGER NOT NULL,
+    observacion TEXT,
+    usuario INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-09-06T16:12:09.886819
+CREATE TABLE tareas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre CHAR(512) NOT NULL,
+    tarea TEXT NOT NULL,
+    proyecto INTEGER REFERENCES proyecto (id) ON DELETE CASCADE,
+    estado INTEGER REFERENCES estados (id) ON DELETE CASCADE,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NOT NULL
+);
+success!

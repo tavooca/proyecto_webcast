@@ -1,0 +1,24 @@
+[2012-09-06 15:33:32] START
+[2012-09-06 15:42:11] EDIT proyectos/models/db.py: 0
+[2012-09-06 15:42:26] EDIT proyectos/models/db.py: 1
+[2012-09-06 16:14:18] EDIT proyectos/models/menu.py: 3
+[2012-09-06 16:14:20] EDIT proyectos/models/menu.py: 0
+[2012-09-06 16:14:42] CREATE configuracion.py: 0
+[2012-09-06 16:15:09] EDIT proyectos/controllers/configuracion.py: 2
+[2012-09-06 16:16:18] EDIT proyectos/controllers/configuracion.py: 1
+[2012-09-06 16:18:31] EDIT proyectos/controllers/configuracion.py: 0
+[2012-09-06 16:21:46] EDIT proyectos/controllers/configuracion.py: 0
+[2012-09-06 16:22:34] EDIT proyectos/controllers/configuracion.py: 6
+[2012-09-06 16:23:05] EDIT proyectos/models/menu.py: 6
+[2012-09-06 16:24:55] EDIT proyectos/models/menu.py: 9
+[2012-09-06 16:25:31] EDIT proyectos/controllers/configuracion.py: 3
+[2012-09-06 16:27:45] EDIT proyectos/controllers/configuracion.py: 0
+[2012-09-06 16:28:46] EDIT proyectos/controllers/configuracion.py: 3
+[2012-09-06 16:29:19] EDIT proyectos/controllers/configuracion.py: 0
+[2012-09-06 16:31:07] CREATE configuracion/grupos.html: 0
+[2012-09-06 16:31:26] EDIT proyectos/views/configuracion/grupos.html: -2
+[2012-09-06 16:31:56] EDIT proyectos/views/configuracion/grupos.html: 1
+[2012-09-06 16:32:22] EDIT proyectos/views/configuracion/grupos.html: 2
+[2012-09-06 16:34:11] EDIT proyectos/static/css/web2py.css: 2
+[2012-09-06 16:34:46] EDIT proyectos/static/css/web2py.css: 1
+[2012-09-06 16:34:59] EDIT proyectos/static/css/web2py.css: 0

@@ -1,0 +1,80 @@
+(dp1
+S'fecha_fin'
+p2
+(dp3
+S'type'
+p4
+S'date'
+p5
+sS'sortable'
+p6
+I7
+sS'sql'
+p7
+S'DATE NOT NULL'
+p8
+ssS'fecha_inicio'
+p9
+(dp10
+g4
+g5
+sg6
+I6
+sg7
+S'DATE NOT NULL'
+p11
+ssS'proyecto'
+p12
+(dp13
+g4
+S'reference proyecto'
+p14
+sg6
+I4
+sg7
+S'INTEGER REFERENCES proyecto (id) ON DELETE CASCADE'
+p15
+ssS'nombre'
+p16
+(dp17
+g4
+S'string'
+p18
+sg6
+I2
+sg7
+S'CHAR(512) NOT NULL'
+p19
+ssS'tarea'
+p20
+(dp21
+g4
+S'text'
+p22
+sg6
+I3
+sg7
+S'TEXT NOT NULL'
+p23
+ssS'estado'
+p24
+(dp25
+g4
+S'reference estados'
+p26
+sg6
+I5
+sg7
+S'INTEGER REFERENCES estados (id) ON DELETE CASCADE'
+p27
+ssS'id'
+p28
+(dp29
+g4
+g28
+sg6
+I1
+sg7
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
+p30
+ss.
