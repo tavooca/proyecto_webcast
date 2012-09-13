@@ -86,49 +86,57 @@ use_janrain(auth,filename='private/janrain.key')
 
 
 db.define_table("grupos",
-    Field("grupo", length=100, notnull=True, default=None))
-
-db.define_table("clientes",
-    Field("nombres", notnull=True, default=None),
-    Field("apellidos", notnull=True, default=None),
-    Field("empresa", default=None),
-    Field("telefono", default=None),
-    Field("email", default=None),
-    Field("observacion", "text", default=None),
-    Field("foto", "upload", default=None))
+    Field("grupo",requires = IS_NOT_EMPTY(error_message=T('El campo grupo es obligatorio'))),
+    format = '%(grupo)s'
+    )
+db.grupos.grupo.requires = IS_NOT_IN_DB(db, 'grupos.grupo')
 
 db.define_table("estados",
     Field("grupo", db.grupos),
-    Field("estado", notnull=True, default=None))
+    Field("estado",requires = IS_NOT_EMPTY(error_message=T('El campo estado es obligatorio'))),
+    format = '%(estado)s'
+    )
+db.estados.estado.requires = IS_NOT_IN_DB(db, 'estados.estado')
 
 db.define_table("tipos",
     Field("grupo", db.grupos),
-    Field("tipo", notnull=True, default=None))
+    Field("tipo",requires = IS_NOT_EMPTY(error_message=T('El campo tipo es obligatorio'))),
+    format = '%(tipo)s'
+    )
+db.tipos.tipo.requires = IS_NOT_IN_DB(db, 'tipos.tipo')
+
+db.define_table("clientes",
+    Field("nombres",requires = IS_NOT_EMPTY(error_message=T('El campo nombre es obligatorio'))),
+    Field("apellidos",requires = IS_NOT_EMPTY(error_message=T('El campo apellido es obligatorio'))),
+    Field("empresa",requires = IS_NOT_EMPTY(error_message=T('El campo empresa es obligatorio'))),
+    Field("telefono"),
+    Field("email",requires = IS_EMAIL(error_message=T('Email Invalido !'))),
+    Field("observacion", "text"),
+    Field("foto", "upload"),
+    format = '%(apellidos)s %(nombres)s'
+    )
+
+#IS_DATE
+#requires = IS_EMAIL(error_message=T('invalid email!'))
 
 db.define_table("proyecto",
-    Field("nombre", default=None),
+    Field("nombre",requires = IS_NOT_EMPTY(error_message=T('El campo nombre es obligatorio'))),
     Field("cliente", db.clientes),
     Field("tipo", db.tipos),
     Field("estado", db.estados),
-    Field("fecha_inicio", "date", notnull=True, default=None),
-    Field("fecha_fin", "date", notnull=True, default=None),
-    Field("valor", "integer", notnull=True, default=None),
-    Field("observacion", "text", default=None),
-    Field("usuario", db.auth_user, default=None))
+    Field("fecha_inicio", "date", requires = IS_DATE(error_message=T('El campo debe ser una Fecha'))),
+    Field("fecha_fin", "date", requires = IS_DATE(error_message=T('El campo debe ser una Fecha'))),
+    Field("valor", "integer",requires = IS_NOT_EMPTY(error_message=T('El campo valor es obligatorio'))),
+    Field("observacion", "text"),
+    Field("usuario", db.auth_user),
+    format = '%(nombre)s'
+    )
 
 db.define_table("tareas",
-    Field("nombre", notnull=True, default=None),
-    Field("tarea", "text", notnull=True, default=None),
+    Field("tarea", "text", requires = IS_NOT_EMPTY(error_message=T('El campo tarea es obligatorio'))),
     Field("proyecto", db.proyecto),
     Field("estado", db.estados),
-    Field("fecha_inicio", "date", notnull=True, default=None),
-    Field("fecha_fin", "date", notnull=True, default=None))
-
-""" Relations between tables (remove fields you don't need from requires) """
-db.estados.grupo.requires=IS_IN_DB( db, 'grupos.id', ' %(grupo)s')
-db.tipos.grupo.requires=IS_IN_DB( db, 'grupos.id', ' %(grupo)s')
-db.proyecto.cliente.requires=IS_IN_DB( db, 'clientes.id', ' %(nombres)s %(apellidos)s %(empresa)s %(telefono)s %(email)s %(onservacion)s %(foto)s')
-db.proyecto.tipo.requires=IS_IN_DB( db, 'tipos.id', ' %(grupo)s %(tipo)s')
-db.proyecto.estado.requires=IS_IN_DB( db, 'estados.id', ' %(grupo)s %(estado)s')
-db.tareas.proyecto.requires=IS_IN_DB( db, 'proyecto.id', ' %(nombre)s %(cliente)s %(tipo)s %(estado)s %(fecha_inicio)s %(fecha_fin)s %(valor)s %(observacion)s %(usuario)s')
-db.tareas.estado.requires=IS_IN_DB( db, 'estados.id', ' %(grupo)s %(estado)s')
+    Field("fecha_inicio", "date", requires = IS_DATE(error_message=T('El campo debe ser una Fecha'))),
+    Field("fecha_fin", "date", requires = IS_DATE(error_message=T('El campo debe ser una Fecha'))),
+    format = '%(tarea)s (%(proyecto)s)'
+    )

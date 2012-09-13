@@ -33,18 +33,18 @@ p15
 sg6
 I7
 sg7
-S'DATE NOT NULL'
+S'DATE'
 p16
-ssS'cliente'
+ssS'id'
 p17
 (dp18
 g4
-S'reference clientes'
+S'id'
 p19
 sg6
-I3
+I1
 sg7
-S'INTEGER REFERENCES clientes (id) ON DELETE CASCADE'
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
 p20
 ssS'fecha_inicio'
 p21
@@ -54,7 +54,7 @@ g15
 sg6
 I6
 sg7
-S'DATE NOT NULL'
+S'DATE'
 p23
 ssS'valor'
 p24
@@ -65,7 +65,7 @@ p26
 sg6
 I8
 sg7
-S'INTEGER NOT NULL'
+S'INTEGER'
 p27
 ssS'observacion'
 p28
@@ -100,14 +100,15 @@ I5
 sg7
 S'INTEGER REFERENCES estados (id) ON DELETE CASCADE'
 p39
-ssS'id'
+ssS'cliente'
 p40
 (dp41
 g4
-g40
-sg6
-I1
-sg7
-S'INTEGER PRIMARY KEY AUTOINCREMENT'
+S'reference clientes'
 p42
+sg6
+I3
+sg7
+S'INTEGER REFERENCES clientes (id) ON DELETE CASCADE'
+p43
 ss.
