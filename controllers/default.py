@@ -17,8 +17,12 @@ def index():
     if you need a simple wiki simple replace the two lines below with:
     return auth.wiki()
     """
-    response.flash = T("Welcome to web2py!")
-    return dict(message=T('Hello World'))
+    if auth.user == None:
+        #message=T('Hello World')
+        redirect(URL('default','user/login'))
+    else:
+        redirect(URL('default','principal'))
+    pass
 
 def user():
     """
@@ -71,3 +75,7 @@ def data():
       LOAD('default','data.load',args='tables',ajax=True,user_signature=True)
     """
     return dict(form=crud())
+
+def principal():
+    response.flash = T("Bienvenidos")
+    return locals()

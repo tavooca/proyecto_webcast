@@ -307,6 +307,12 @@ li.w2p_grid_breadcrumb_elem {
 }
 
 #form{
-    background-color: #ccc;
-    padding: 8%;
+        /*bordes*/
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    /*sombras*/
+    -webkit-box-shadow:  5px 15px 20px 1px #666;
+    box-shadow:  5px 15px 20px 1px #666;
+
+    padding: 2%;
 }

@@ -57,6 +57,7 @@ mail.settings.login = 'username:password'
 auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
+auth.settings.actions_disabled = ['change_password','request_reset_password','retrieve_username']
 
 ## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.
 ## register with janrain.com, write your domain:api_key in private/janrain.key
@@ -133,10 +134,11 @@ db.define_table("proyecto",
     )
 
 db.define_table("tareas",
+    Field("nombre",requires = IS_NOT_EMPTY(error_message=T('El campo nombre es obligatorio'))),
     Field("tarea", "text", requires = IS_NOT_EMPTY(error_message=T('El campo tarea es obligatorio'))),
     Field("proyecto", db.proyecto),
     Field("estado", db.estados),
     Field("fecha_inicio", "date", requires = IS_DATE(error_message=T('El campo debe ser una Fecha'))),
     Field("fecha_fin", "date", requires = IS_DATE(error_message=T('El campo debe ser una Fecha'))),
-    format = '%(tarea)s (%(proyecto)s)'
+    format = '%(nombre)s (%(proyecto)s)'
     )

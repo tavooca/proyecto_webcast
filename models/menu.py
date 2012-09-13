@@ -6,12 +6,12 @@
 #########################################################################
 
 response.title = ' '.join(word.capitalize() for word in request.application.split('_'))
-response.subtitle = T('customize me!')
+response.subtitle = T('Ejemplo Webcast!')
 
 ## read more at http://dev.w3.org/html5/markup/meta.name.html
-response.meta.author = 'Your Name <you@example.com>'
-response.meta.description = 'a cool new app'
-response.meta.keywords = 'web2py, python, framework'
+response.meta.author = '@chum150 <ccardenas@emp2web.com>'
+response.meta.description = 'Ejemplo generado en el webcast #devIO'
+response.meta.keywords = 'web2py, @chum150, @desweb'
 response.meta.generator = 'Web2py Web Framework'
 
 ## your http://google.com/analytics id
@@ -55,6 +55,7 @@ response.menu += [
 ## provide shortcuts for development. remove in production
 #########################################################################
 
+"""
 def _():
     # shortcuts
     app = request.application
@@ -124,3 +125,4 @@ def _():
                 ]
          )]
 _()
+"""
