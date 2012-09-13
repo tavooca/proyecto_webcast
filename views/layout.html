@@ -76,7 +76,7 @@
           <span class="icon-bar"></span>
         </a>
 	<a class="brand" href="#">web2py&trade;&nbsp;</a>
-	<div id="navbar">{{#='auth' in globals() and auth.navbar() or ''}}</div>
+	<div id="navbar">{{if auth.user != None:}}<a href="{{=URL('default','user/logout')}}">salir</a>{{pass}}</div>
 	<div class="nav-collapse">
 	  {{is_mobile=request.user_agent().is_mobile}}
 	  {{if response.menu:}}
